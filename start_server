@@ -1,0 +1,5 @@
+#!/bin/bash
+
+BUNNY_ENV=$(awk '{if ($1=="environment:") { print $2 }}' bunny_config.yml)
+
+thin start -C config/thin/${BUNNY_ENV}.yml
