@@ -6,6 +6,7 @@ then
   BUNNY_ENV=$(awk '{if ($1=="environment:") { print $2 }}' bunny_config.yml)
 fi
 
+# if PORT is set, pass it to thin
 if [ -n "$PORT" ]
 then
   thin start -C config/thin/${BUNNY_ENV}.yml -p $PORT

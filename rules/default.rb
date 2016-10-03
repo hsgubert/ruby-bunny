@@ -2,15 +2,15 @@ require './lib/rule_set'
 
 class Default < Bunny::RuleSet
 
-  def g(*query_params)
+  define_rule :g, ->(*query_params) do
     "https://www.google.com/search?q=%{query_string}" % {query_string: join_query_string(*query_params)}
   end
 
-  def wiki(*query_params)
+  define_rule :wiki, ->(*query_params) do
     "https://www.wikipedia.org/wiki/?search=%{query_string}" % {query_string: join_query_string(*query_params)}
   end
 
-  def so(*query_params)
+  define_rule :so, ->(*query_params) do
     "http://stackoverflow.com/search?q=%{query_string}" % {query_string: join_query_string(*query_params)}
   end
 
