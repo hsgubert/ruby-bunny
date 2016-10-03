@@ -1,3 +1,3 @@
 ---
   environment: development
-  rule_set: solvis
+  rule_set: default

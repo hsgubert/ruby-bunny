@@ -14,7 +14,7 @@ module Bunny
 
     def self.get_redirect_location(bunny_cmd)
       query_string_tokens = bunny_cmd.to_s.split(QUERY_STRING_SEPARATOR)
-      run_rule(query_string_tokens[0], query_string_tokens[1..-1])
+      run_rule(query_string_tokens[0], *query_string_tokens[1..-1])
     end
 
   protected
@@ -27,7 +27,7 @@ module Bunny
 
     def self.run_rule(command, *query_params)
       if @@rules.has_key? command.to_sym
-        @@rules[command.to_sym].call(query_params)
+        @@rules[command.to_sym].call(*query_params)
       else
         @@default_rule_lambda.call(command, *query_params)
       end
