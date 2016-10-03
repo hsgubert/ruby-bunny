@@ -1,7 +1,7 @@
 ---
 chdir: ./
 rackup: ./config/rack/bunny_server.ru
-environment: production
+environment: heroku
 address: 0.0.0.0
 timeout: 30
 log: log/thin_production.log
@@ -11,4 +11,4 @@ max_persistent_conns: 100
 require: []
 wait: 30
 threadpool_size: 20
-daemonize: true
+daemonize: false

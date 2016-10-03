@@ -1,5 +1,14 @@
 #!/bin/bash
 
-BUNNY_ENV=$(awk '{if ($1=="environment:") { print $2 }}' bunny_config.yml)
+# if bunny env is not set, get it from the config file
+if [ -z "$BUNNY_ENV" ]
+then
+  BUNNY_ENV=$(awk '{if ($1=="environment:") { print $2 }}' bunny_config.yml)
+fi
 
-thin start -C config/thin/${BUNNY_ENV}.yml
+if [ -n "$PORT" ]
+then
+  thin start -C config/thin/${BUNNY_ENV}.yml -p $PORT
+else
+  thin start -C config/thin/${BUNNY_ENV}.yml
+fi
